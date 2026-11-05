@@ -10,19 +10,19 @@
     if (a.hasAttribute("data-fill")) a.textContent = addr;
   });
 
-  // 2. Figure viewer: clicking a paper figure opens it full size.
+  // 2. Figure viewer: clicking a paper figure or the research map opens it full size.
   //    Without JavaScript (or <dialog> support) the link simply opens the image file.
   var dlg = document.getElementById("lightbox");
   if (!dlg || typeof dlg.showModal !== "function") return;
   var img = dlg.querySelector("img");
   var cap = dlg.querySelector("figcaption");
 
-  document.querySelectorAll("a.pub-fig").forEach(function (link) {
+  document.querySelectorAll("a.pub-fig, a.map-zoom").forEach(function (link) {
     link.addEventListener("click", function (e) {
       e.preventDefault();
       var thumb = link.querySelector("img");
       img.src = link.getAttribute("href");
-      img.alt = thumb ? thumb.alt : "";
+      img.alt = thumb ? thumb.alt : (link.getAttribute("data-alt") || "");
       cap.textContent = link.getAttribute("data-caption") || "";
       dlg.showModal();
     });
