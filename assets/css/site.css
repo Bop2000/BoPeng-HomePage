@@ -17,7 +17,7 @@
   --ink: #1e232a;          /* body text */
   --steel: #586271;        /* secondary text */
   --rule: #dde2e8;         /* hairlines */
-  --cobalt: #2551a8;       /* the one accent: links, specimen, tags */
+  --cobalt: #2551a8;       /* the one accent: links, research map, tags */
   --cobalt-deep: #1b2a3e;
   --tint: #e9eef8;
 
@@ -69,9 +69,9 @@ a:hover { color: var(--cobalt-deep); }
 .hero { padding: clamp(36px, 6vw, 72px) 0 clamp(44px, 6vw, 72px); }
 .hero .wrap {
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(260px, 1fr);
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 1fr);
   gap: clamp(28px, 5vw, 64px);
-  align-items: stretch;
+  align-items: center;
 }
 .id-row { display: flex; gap: 26px; align-items: flex-end; }
 .portrait { width: 136px; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 6px; background: var(--powder); flex: none; }
@@ -88,9 +88,12 @@ a:hover { color: var(--cobalt-deep); }
 .links a.btn .ic { color: #fff; }
 .links a.btn:hover { background: var(--cobalt-deep); color: #fff; }
 
-.specimen { display: flex; flex-direction: column; gap: 12px; margin: 0; }
-.specimen img { flex: 1 1 auto; width: 100%; min-height: 340px; object-fit: cover; border-radius: 10px; background: var(--powder); }
-.specimen figcaption { font: 400 .82rem/1.45 var(--sans); color: var(--steel); }
+/* research map (inline SVG, drawn in a 600 x 600 box; its text sizes are in those units) */
+.map { margin: 0; width: 100%; max-width: 460px; justify-self: end; }
+.research-map { display: block; width: 100%; height: auto; }
+.rm-label { font: 700 21px/1 var(--sans); letter-spacing: .01em; fill: var(--cobalt-deep); }
+.rm-core-1 { font: 700 24px/1 var(--sans); letter-spacing: -.01em; fill: #fff; }
+.rm-core-2 { font: 400 18px/1 var(--sans); fill: #dfe7f7; }
 
 /* ---------- sections: title column + content column ---------- */
 .section { border-top: 1px solid var(--rule); padding: clamp(40px, 6vw, 64px) 0; }
@@ -227,9 +230,7 @@ footer a { color: var(--steel); }
 /* ---------- responsive ---------- */
 @media (max-width: 920px) {
   .hero .wrap { grid-template-columns: minmax(0, 1fr); }
-  .specimen { order: -1; }
-  .specimen img { min-height: 0; height: 128px; border-radius: 8px; }
-  .specimen figcaption { display: none; }
+  .map { justify-self: center; max-width: 420px; }
   .section > .wrap { grid-template-columns: minmax(0, 1fr); gap: 22px; }
   .sec-title { position: static; }
   .section h2 .h2-sub { display: inline; margin-left: .6rem; }
@@ -254,7 +255,7 @@ footer a { color: var(--steel); }
 }
 
 @media print {
-  .bar, .specimen, .gallery, .lightbox, .zoom-hint { display: none !important; }
+  .bar, .map, .gallery, .lightbox, .zoom-hint { display: none !important; }
   .section { border-top-color: #ccc; padding: 18px 0; }
   .section > .wrap { grid-template-columns: 150px minmax(0, 1fr); }
   details { display: block; }
